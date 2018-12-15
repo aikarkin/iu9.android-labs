@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmailActivity">
+
+    <EditText
+        android:id="@+id/edit_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_email_subject"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edit_to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_email_to"
+        android:layout_below="@id/edit_subject"
+        android:inputType="text" />
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/matv_email_content"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/edit_to"
+        android:gravity="top"
+        android:hint="@string/hint_email_content" />
+
+    <Button
+        android:id="@+id/button_email_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_green_light"
+        android:text="@string/button_email_save" />
+
+    <Button
+        android:id="@+id/button_email_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:layout_toEndOf="@+id/button_email_save"
+        android:text="@string/button_email_cancel" />
+
+</RelativeLayout>

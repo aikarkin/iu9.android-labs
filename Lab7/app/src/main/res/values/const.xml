@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apiKey">aa28375976e9cf6637268bd0be9b1b9a5788534c6f2e6a64bcb800d384968aa1</string>
+    <string name="apiHost">min-api.cryptocompare.com</string>
+    <string name="allCoinsPath">/data/all/coinlist</string>
+    <string name="mulSymbolsPath">/data/pricemulti</string>
+</resources>

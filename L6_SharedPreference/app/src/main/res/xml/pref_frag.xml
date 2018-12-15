@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:defaultValue="@bool/must_pictures_shown_by_default"
+        android:key="must_pictures_shown"
+        android:title="@string/show_pictures_title" />
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/langs_names"
+        android:entryValues="@array/langs_values"
+        android:key="lang_gui"
+        android:title="@string/gui_language" />
+    <MultiSelectListPreference
+        android:defaultValue="@array/sources_default_values"
+        android:entries="@array/sources_names"
+        android:entryValues="@array/sources_values"
+        android:key="news_sources"
+        android:title="@string/news_sources_title" />
+    <EditTextPreference
+        android:defaultValue="@string/pref_default_api_key"
+        android:key="news_api_key"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/api_key_title" />
+</PreferenceScreen>

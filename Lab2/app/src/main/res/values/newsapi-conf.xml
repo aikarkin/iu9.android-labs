@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_key">95718e78b75c4f17bd4f253feb2503a7</string>
+    <string name="api_news_uri">https://newsapi.org/v2/top-headlines</string>
+    <string name="defualt_country">us</string>
+    <string name="default_category">business</string>
+</resources>

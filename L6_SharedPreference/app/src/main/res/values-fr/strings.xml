@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">L6 Préférence partagée</string>
+    <string name="label_article_image">Photo d\'actualité</string>
+    <string name="label_article_title">Le titre de l\'article</string>
+    <string name="article_description">Description d\'article</string>
+    <string name="settings_button">Réglages</string>
+    <string name="title_activity_preference">Préférence</string>
+
+    <string name="lang_ru">Russe</string>
+    <string name="lang_en">Anglais</string>
+    <string name="lang_fr">Français</string>
+
+    <string name="settings_btn_save_lbl">Sauvegarder</string>
+
+    <string name="gui_language">Langue de l\'interface</string>
+    <string name="news_sources_title">Sources de nouvelles</string>
+    <string name="api_key_title">Clé API</string>
+    <string name="show_pictures_title">Inclure des images</string>
+    <string name="title_activity_settings">Réglages</string>
+</resources>

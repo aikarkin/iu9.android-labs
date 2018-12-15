@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Lab4</string>
+    <string name="info_not_matched">User name: [not matched]\nUser age: [not matched]</string>
+    <string name="msg_map_open_failed">Failed to open map - no map application found</string>
+    <string name="msg_no_contact">No contact selected</string>
+    <string name="msg_open_contact_failed">Internal error - failed to open contact</string>
+    <string name="label_map_open">Open Map</string>
+    <string name="label_pick_contact">Pick Contact</string>
+    <string name="open_video">Open Video</string>
+    <string name="label_send_email">Send email</string>
+    <string name="msg_pickcontact_fail">Failed to pick contact - no application found</string>
+    <string name="msg_browseropen_failed">Failed to open page - no browser found</string>
+    <string name="hint_email_subject">Subject</string>
+    <string name="hint_email_to">To</string>
+    <string name="hint_email_content">Content</string>
+    <string name="button_email_save">Save</string>
+    <string name="button_email_cancel">Cancel</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Л6 Параметры приложения</string>
+    <string name="label_article_image">Картинка новости</string>
+    <string name="label_article_title">Заголовок новости</string>
+    <string name="article_description">Описание новости</string>
+    <string name="settings_button">Настройки</string>
+    <string name="title_activity_preference">Параметры</string>
+
+    <string name="lang_ru">Русский</string>
+    <string name="lang_en">Английский</string>
+    <string name="lang_fr">Франнцузкий</string>
+
+    <string name="settings_btn_save_lbl">Сохранить</string>
+
+    <string name="gui_language">Язык интерфейса</string>
+    <string name="news_sources_title">Источники новостей</string>
+    <string name="api_key_title">Ключ API</string>
+    <string name="show_pictures_title">Отображать картинки</string>
+    <string name="title_activity_settings">Настройки</string>
+</resources>

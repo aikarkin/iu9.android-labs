@@ -1,0 +1,3 @@
+[act/pers. type]	screen rotate	activivty fold
+saved instance state	null		null
+static variable		yes		yes		

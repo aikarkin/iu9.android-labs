@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="example.javatpoint.com.optionmenu.EditFile">
+
+    <item  android:id="@+id/item_save"
+        android:title="@string/label_item_save"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_save_white_24dp"/>
+        <!--app:actionViewClass="android.widget.ImageButton"-->
+
+    <item  android:id="@+id/item_close"
+        android:title="@string/label_item_close"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_close_black_24dp"/>
+        <!--app:actionViewClass="android.widget.ImageButton"-->
+</menu>

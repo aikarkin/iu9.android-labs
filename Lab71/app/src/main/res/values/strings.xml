@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab7</string>
+    <string name="hint_enter_note">Enter note</string>
+    <string name="label_edit_note">Edit note</string>
+</resources>

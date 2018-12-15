@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="sources_default_values">
+        <item>abc-news</item>
+        <item>bloomberg</item>
+        <item>ars-technica</item>
+        <item>national-geographic</item>
+        <item>buzzfeed</item>
+    </array>
+
+    <array name="langs_names">
+        <item>@string/lang_en</item>
+        <item>@string/lang_ru</item>
+        <item>@string/lang_fr</item>
+    </array>
+    
+    <array name="langs_values">
+        <item>en</item>
+        <item>ru</item>
+        <item>fr</item>
+    </array>
+
+    <array name="sources_names">
+        <item>ABC News</item>
+        <item>Bloomberg</item>
+        <item>Ars Technica</item>
+        <item>Crypto Coins News</item>
+        <item>National Geographic</item>
+        <item>Buzzfeed</item>
+        <item>Google News (France)</item>
+        <item>Le Monde</item>
+        <item>Les Echos</item>
+        <item>Lenta</item>
+        <item>Google News (Russia)</item>
+        <item>RBC</item>
+    </array>
+
+    <array name="sources_values">
+        <item>abc-news</item>
+        <item>bloomberg</item>
+        <item>ars-technica</item>
+        <item>crypto-coins-news</item>
+        <item>national-geographic</item>
+        <item>buzzfeed</item>
+        <item>google-news-fr</item>
+        <item>le-monde</item>
+        <item>les-echos</item>
+        <item>lenta</item>
+        <item>google-news-ru</item>
+        <item>rbc</item>
+    </array>
+</resources>

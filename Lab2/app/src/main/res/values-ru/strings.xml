@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Лабараторная №2</string>
+    <string name="pic_label_1">Подпись рисунка</string>
+    <string name="txt_field_value">Текстовое поле</string>
+    <string name="action_update">Обновить</string>
+    <string name="action_change_lang">Поменять язык</string>
+    <string name="label_published">Дата</string>
+    <string name="label_author">Автор</string>
+    <string name="label_title">Заголовок</string>
+    <string name="previous">Назад</string>
+    <string name="next">Далее</string>
+    <string name="api_key">95718e78b75c4f17bd4f253feb2503a7</string>
+    <string name="api_news_uri">https://newsapi.org/v2/top-headlines</string>
+    <string name="defualt_country">ru</string>
+    <string name="default_category">business</string>
+    <string name="news_image_description">Картинка статьи</string>
+</resources>

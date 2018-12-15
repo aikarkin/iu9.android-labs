@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lab5</string>
+    <string name="article_title">Loading...</string>
+    <string name="btn_prev">Previous</string>
+    <string name="btn_next">Next</string>
+    <string name="txt_loading">Loading...</string>
+</resources>

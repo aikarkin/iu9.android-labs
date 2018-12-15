@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lab8</string>
+    <string name="file_type_dir">Directory</string>
+    <string name="file_type_file">File</string>
+    <string name="label_loading">Loading ...</string>
+    <string name="content_desc_file_opts">Opts</string>
+    <string name="enter_content_here">Enter content here</string>
+    <string name="label_item_save">Save</string>
+    <string name="label_item_close">Close</string>
+</resources>
