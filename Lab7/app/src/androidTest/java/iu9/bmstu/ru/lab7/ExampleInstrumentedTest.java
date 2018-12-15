@@ -1,4 +1,4 @@
-package labs.android.iu9.bmstu.ru.lab7;
+package iu9.bmstu.ru.lab7;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("labs.android.iu9.bmstu.ru.lab7", appContext.getPackageName());
+        assertEquals("iu9.bmstu.ru.lab7", appContext.getPackageName());
     }
 }
