@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lab9</string>
+    <string name="hint_loading">Loading ...</string>
+    <string name="hint_enter_text">Enter text here</string>
+    <string name="err_note_edit_failed">Something goes wrong: parent activity start note edition, but no note provided. Finish activity...</string>
+    <string name="dialog_title_rm">Do you really want to remove note?</string>
+    <string name="dialog_title_action">Choose action</string>
+    <string name="menu_item_save">Save</string>
+</resources>
