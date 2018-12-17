@@ -18,12 +18,10 @@ import ru.bmstu.iu9.lab9.notes.entity.Note;
 public class NotesViewAdapter extends RecyclerView.Adapter<NotesViewAdapter.NotesViewHolder> {
     private static final String TAG = "NotesViewAdapter";
 
-    private NotesDaService daService;
     private List<Note> notes;
 
     public NotesViewAdapter(NotesDaService svc) {
-        this.daService = svc;
-        this.notes = daService.getAll();
+        this.notes = svc.getAll();
         Log.i(TAG, "NotesViewAdapter: notes - " + notes);
     }
 
@@ -61,7 +59,7 @@ public class NotesViewAdapter extends RecyclerView.Adapter<NotesViewAdapter.Note
     public void onBindViewHolder(@NonNull NotesViewHolder holder, int position) {
         Note note = notes.get(position);
         holder.lastModified.setText(note.getLastModifiedAsString());
-        holder.content.setText(note.getContent());
+        holder.content.setText(note.getSummary());
         holder.itemView.setTag(note.getId());
     }
 
@@ -70,11 +68,11 @@ public class NotesViewAdapter extends RecyclerView.Adapter<NotesViewAdapter.Note
         return notes.size();
     }
 
-    public class NotesViewHolder extends RecyclerView.ViewHolder {
+    class NotesViewHolder extends RecyclerView.ViewHolder {
         TextView lastModified;
         TextView content;
 
-        public NotesViewHolder(@NonNull View itemView) {
+        NotesViewHolder(@NonNull View itemView) {
             super(itemView);
 
             lastModified = itemView.findViewById(R.id.lastModified);

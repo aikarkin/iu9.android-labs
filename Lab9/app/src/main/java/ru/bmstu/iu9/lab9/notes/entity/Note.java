@@ -2,33 +2,31 @@ package ru.bmstu.iu9.lab9.notes.entity;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.TimeZone;
 
+import static java.lang.Math.min;
+
 
 public final class Note implements Serializable {
+    private static final int SUMMARY_LEN = 50;
+
     private long id;
 
     private Date createdAt;
     private Date lastModified;
     private String content;
-
+    private String summary;
+    
     public Note() { }
 
     public Note(long id, Date createdAt, Date lastModified, String content) {
         this.createdAt = createdAt;
         this.lastModified = lastModified;
-        this.content = content;
         this.id = id;
-    }
-
-    public Note(String content) {
-        this.content = content;
-        this.createdAt = Calendar.getInstance().getTime();
-        this.content = content;
+        this.setContent(content);
     }
 
     public long getId() {
@@ -41,10 +39,6 @@ public final class Note implements Serializable {
 
     public Date getCreatedAt() {
         return createdAt;
-    }
-
-    public String getCreatedAtAsString() {
-        return dateAsString(createdAt);
     }
 
     public void setCreatedAt(Date createdAt) {
@@ -69,6 +63,11 @@ public final class Note implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+        updateSummary();
+    }
+
+    public String getSummary() {
+        return summary;
     }
 
     @Override
@@ -103,5 +102,10 @@ public final class Note implements Serializable {
                 ", lastModified=" + dateAsString(lastModified) +
                 ", content='" + content + '\'' +
                 '}';
+    }
+
+    private void updateSummary() {
+        summary = content.split("\n")[0].replaceAll("\\[#ref=(.*?)]", "").trim();
+        summary = summary.substring(0, min(summary.length(), SUMMARY_LEN));
     }
 }

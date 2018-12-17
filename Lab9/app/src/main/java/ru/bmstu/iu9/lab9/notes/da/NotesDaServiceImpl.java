@@ -32,6 +32,10 @@ public class NotesDaServiceImpl implements NotesDaService {
         Cursor cursor = resolver.query(ALL_NOTES_URI, null, null, null, null);
         List<Note> notes = new ArrayList<>();
 
+        if(cursor == null) {
+            return notes;
+        }
+
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToPosition(i);
             notes.add(noteFromCursor(cursor));
