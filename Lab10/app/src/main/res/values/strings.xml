@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lab10</string>
+    <string name="edit_file_hint">File...</string>
+    <string name="txt_etc">...</string>
+    <string name="hint_set_time">Set time..</string>
+    <string name="txt_btn_set_alarm">Set Alarm</string>
+</resources>

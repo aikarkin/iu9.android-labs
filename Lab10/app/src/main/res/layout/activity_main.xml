@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top"
+    android:layout_marginTop="20dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/editTxtFile"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/edit_file_hint"
+            android:inputType="time" />
+        <Button
+            android:id="@+id/btnChooseFile"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/txt_etc" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTxtTime"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:ems="8"
+        android:hint="@string/hint_set_time"
+        android:inputType="time" />
+
+    <Button
+        android:id="@+id/btnSetAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:layout_marginTop="25dp"
+        android:text="@string/txt_btn_set_alarm" />
+
+</LinearLayout>
