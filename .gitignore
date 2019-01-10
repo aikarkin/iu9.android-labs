@@ -13,6 +13,7 @@
 # generated files
 bin/
 gen/
+release/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -35,6 +36,7 @@ proguard-project.txt
 .project
 .metadata
 bin/**
+release/**
 tmp/**
 tmp/**/*
 *.tmp

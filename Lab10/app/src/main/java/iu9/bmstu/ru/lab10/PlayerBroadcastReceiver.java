@@ -13,7 +13,7 @@ public class PlayerBroadcastReceiver extends BroadcastReceiver {
         Log.i(TAG, "onReceive: ");
         String action = intent.getAction();
 
-        if(action != null) {
+        if (action != null) {
             Log.i(TAG, "onReceive: action: " + action);
             Intent svcStartIntent = new Intent(context, PlayerForegroundService.class);
             svcStartIntent.putExtra("trackName", intent.getStringExtra("trackName"));
@@ -23,17 +23,20 @@ public class PlayerBroadcastReceiver extends BroadcastReceiver {
                 case Const.Action.START_SVC:
                     svcStartIntent.setAction(Const.Action.START_SVC);
                     break;
-                case Const.Action.PLAY:
-                    svcStartIntent.setAction(Const.Action.PLAY);
-//                    PlayerForegroundService.showNotificationPlayer(context, trackName, true);
+                case Const.Action.PLAYBACK_START:
+                    svcStartIntent.setAction(Const.Action.PLAYBACK_START);
                     break;
-                case Const.Action.STOP:
-                    svcStartIntent.setAction(Const.Action.STOP);
-//                    PlayerForegroundService.showNotificationPlayer(context, trackName, false);
+                case Const.Action.PLAYBACK_STOP:
+                    svcStartIntent.setAction(Const.Action.PLAYBACK_STOP);
                     break;
+                case Const.Action.STOP_SVC:
+                    Log.i(TAG, "onReceive: stopping service ...");
+                    svcStartIntent.setAction(Const.Action.STOP_SVC);
+                    return;
             }
-            context.startForegroundService(svcStartIntent);
             Log.i(TAG, "onReceive: service must be started");
+            context.startForegroundService(svcStartIntent);
         }
     }
+
 }

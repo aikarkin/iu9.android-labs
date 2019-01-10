@@ -1,6 +1,10 @@
 package android.iu9.bmstu.ru.rkapp.entity;
 
+import android.content.Context;
+import android.iu9.bmstu.ru.rkapp.exception.BadApiRequestException;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,24 +66,33 @@ public class CurrencyEntity implements Serializable {
         this.close = close;
     }
 
-    public static List<CurrencyEntity> parse(String content) throws JSONException {
+    public static List<CurrencyEntity> parse(Context ctx, String content) throws JSONException {
         List<CurrencyEntity> currencyList = new ArrayList<>();
         JSONObject json = new JSONObject(content);
-        JSONArray data = json.getJSONArray("Data");
-        for (int i = 0; i < data.length(); i++) {
-            CurrencyEntity currency = new CurrencyEntity();
+        String response = json.getString("Response");
 
-            JSONObject currJson = data.getJSONObject(i);
-            currency.setOpen(currJson.getDouble("open"));
-            currency.setClose(currJson.getDouble("close"));
-            currency.setLow(currJson.getDouble("low"));
-            currency.setHigh(currJson.getDouble("high"));
-            Log.i(TAG, "Parse entity - date = " + currJson.getInt("time"));
-            currency.setDate(new Date((long)currJson.getInt("time") * 1000));
+        if(response.equals("Success")) {
 
-            currencyList.add(currency);
+            JSONArray data = json.getJSONArray("Data");
+            for (int i = 0; i < data.length(); i++) {
+                CurrencyEntity currency = new CurrencyEntity();
+
+                JSONObject currJson = data.getJSONObject(i);
+                currency.setOpen(currJson.getDouble("open"));
+                currency.setClose(currJson.getDouble("close"));
+                currency.setLow(currJson.getDouble("low"));
+                currency.setHigh(currJson.getDouble("high"));
+                Log.i(TAG, "Parse entity - date = " + currJson.getInt("time"));
+                currency.setDate(new Date((long) currJson.getInt("time") * 1000));
+
+                currencyList.add(currency);
+            }
+
+        } else if(response.equals("Error")) {
+            String msg = json.getString("Message");
+            Log.e(TAG, "parse: " + msg);
+            throw new BadApiRequestException(msg);
         }
-
         return currencyList;
     }
 }

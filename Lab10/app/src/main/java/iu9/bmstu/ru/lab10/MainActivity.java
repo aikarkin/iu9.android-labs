@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private static String selectedTrackPath;
     private static String selectedTrackName;
 
+    private AirplaneModeReceiver mediaButtonReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+
+        mediaButtonReceiver = new AirplaneModeReceiver();
+        IntentFilter filter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        registerReceiver(mediaButtonReceiver, filter);
 
         final Button btnFChoose = findViewById(R.id.btnChooseFile);
         final Button btnSetAlarm = findViewById(R.id.btnSetAlarm);
@@ -80,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(pickFileIntent, PICK_AUDIO_REQ_CODE);
         });
         btnSetAlarm.setOnClickListener(btnView -> startPlayerDelayed());
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mediaButtonReceiver);
+        super.onDestroy();
     }
 
     @Override

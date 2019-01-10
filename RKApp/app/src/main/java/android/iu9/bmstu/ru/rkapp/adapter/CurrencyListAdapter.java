@@ -1,12 +1,17 @@
-package android.iu9.bmstu.ru.rkapp;
+package android.iu9.bmstu.ru.rkapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.iu9.bmstu.ru.rkapp.R;
+import android.iu9.bmstu.ru.rkapp.activity.DetailedCurrencyActivity;
 import android.iu9.bmstu.ru.rkapp.entity.CurrencyEntity;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -16,9 +21,14 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapter.ViewHolder> {
+    private AppCompatActivity activity;
     private List<CurrencyEntity> currencyList;
+    private String fsym;
 
-    CurrencyListAdapter() {}
+    public CurrencyListAdapter(AppCompatActivity activity, String fsym) {
+        this.activity = activity;
+        this.fsym = fsym;
+    }
 
     public void setData(List<CurrencyEntity> data) {
         this.currencyList = data;
@@ -45,6 +55,12 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
             holder.dateView.setText(fmt.format(currency.getDate()));
             holder.openView.setText(String.valueOf(currency.getOpen()));
             holder.closeView.setText(String.valueOf(currency.getClose()));
+            holder.btnDetails.setOnClickListener(btnView -> {
+                Intent detailedCurrencyIntent = new Intent(activity, DetailedCurrencyActivity.class);
+                detailedCurrencyIntent.putExtra("fsym", fsym);
+                detailedCurrencyIntent.putExtra("ts", currency.getDate().getTime());
+                activity.startActivity(detailedCurrencyIntent);
+            });
         }
     }
 
@@ -57,6 +73,7 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
         TextView dateView;
         TextView openView;
         TextView closeView;
+        Button btnDetails;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -64,6 +81,7 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
             dateView = itemView.findViewById(R.id.dateValue);
             openView = itemView.findViewById(R.id.openValue);
             closeView = itemView.findViewById(R.id.closeValue);
+            btnDetails = itemView.findViewById(R.id.btnCurrencyDetails);
         }
     }
 }

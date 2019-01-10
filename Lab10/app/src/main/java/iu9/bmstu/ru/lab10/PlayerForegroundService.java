@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -60,13 +61,13 @@ public class PlayerForegroundService extends Service {
                     }
                     break;
                 }
-                case Const.Action.PLAY:
+                case Const.Action.PLAYBACK_START:
                     mPlayer.start();
                     if (trackName != null) {
                         showNotificationPlayer(this, trackName, true);
                     }
                     break;
-                case Const.Action.STOP:
+                case Const.Action.PLAYBACK_STOP:
                     if (trackName != null) {
                         showNotificationPlayer(this, trackName, false);
                     }
@@ -74,7 +75,6 @@ public class PlayerForegroundService extends Service {
                     mPlayer.seekTo(0);
                     break;
                 case Const.Action.STOP_SVC:
-                    mPlayer.release();
                     stopForeground(true);
                     stopSelf();
                     break;
@@ -87,7 +87,9 @@ public class PlayerForegroundService extends Service {
 
     @Override
     public void onDestroy() {
-
+        if(mPlayer != null) {
+            mPlayer.release();
+        }
         super.onDestroy();
         Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
 
@@ -111,24 +113,29 @@ public class PlayerForegroundService extends Service {
         if (isPlaying) {
             actionBtnDrawable = R.drawable.ic_stop_white_24dp;
             btnLabel = "Stop";
-            action = Const.Action.STOP;
+            action = Const.Action.PLAYBACK_STOP;
         } else {
             actionBtnDrawable = R.drawable.ic_play_arrow_white_24dp;
             btnLabel = "Play";
-            action = Const.Action.PLAY;
+            action = Const.Action.PLAYBACK_START;
         }
 
         Intent playerActionIntent = new Intent(ctx, PlayerBroadcastReceiver.class);
         playerActionIntent.setAction(action);
         playerActionIntent.putExtra("trackName", trackName);
-        PendingIntent pendingStop = PendingIntent.getBroadcast(ctx, 1, playerActionIntent, 0);
+        PendingIntent pendingPlayerActionIntent = PendingIntent.getBroadcast(ctx, 1, playerActionIntent, 0);
+
+        Intent serviceStopIntent = new Intent(this, BroadcastReceiver.class);
+        serviceStopIntent.setAction(Const.Action.STOP_SVC);
+        PendingIntent pendingSvcStop = PendingIntent.getBroadcast(ctx, 2, serviceStopIntent, 0);
 
         Notification notification = new NotificationCompat.Builder(ctx, NOTIFICATION_PLAYER_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_play_arrow_black_24dp)
                 .setContentTitle("Wake Up!")
                 .setContentText(trackName)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .addAction(actionBtnDrawable, btnLabel, pendingStop)
+                .addAction(actionBtnDrawable, btnLabel, pendingPlayerActionIntent)
+                .setDeleteIntent(pendingSvcStop)
                 .build();
 
         NotificationManager mNotifyManager = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);

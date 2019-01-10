@@ -1,14 +1,16 @@
-package android.iu9.bmstu.ru.rkapp;
+package android.iu9.bmstu.ru.rkapp.loader;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.iu9.bmstu.ru.rkapp.entity.CurrencyEntity;
+import android.iu9.bmstu.ru.rkapp.exception.BadApiRequestException;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
 import java.io.IOException;
-
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -17,12 +19,14 @@ import java.util.Scanner;
 
 public class CurrencyLoader extends AsyncTaskLoader<List<CurrencyEntity>> {
     private static final String TAG = "CurrencyLoader";
-    List<CurrencyEntity> entities;
+    private List<CurrencyEntity> entities;
     private String url;
     private HttpURLConnection connection;
     private InputStream dataStream;
+    private boolean hasErrors;
+    private String errorMsg;
 
-    CurrencyLoader(Context ctx, String url) {
+    public CurrencyLoader(Context ctx, String url) {
         super(ctx);
         this.url = url;
     }
@@ -48,10 +52,14 @@ public class CurrencyLoader extends AsyncTaskLoader<List<CurrencyEntity>> {
         if(entities == null) {
             try {
                 String content = getResponseFromUrl(url);
-                entities = CurrencyEntity.parse(content);
+                entities = CurrencyEntity.parse(getContext(), content);
             } catch (IOException | JSONException e) {
-                e.printStackTrace();
-                Log.i(TAG, "Exception: " + e.getMessage());
+                Log.e(TAG, "loadInBackground: ", e);
+                entities = null;
+            } catch (BadApiRequestException e) {
+                Log.e(TAG, "loadInBackground: ", e);
+                hasErrors = true;
+                errorMsg = e.getMessage();
                 entities = null;
             }
         }
@@ -123,8 +131,8 @@ public class CurrencyLoader extends AsyncTaskLoader<List<CurrencyEntity>> {
         StringBuilder res = new StringBuilder();
 
 
-        InputStream in = connection.getInputStream();
-        Scanner scanner = new Scanner(in).useDelimiter("\\A");
+        dataStream = connection.getInputStream();
+        Scanner scanner = new Scanner(dataStream).useDelimiter("\\A");
 
         while (scanner.hasNext()) {
             res.append(scanner.next());
@@ -133,4 +141,11 @@ public class CurrencyLoader extends AsyncTaskLoader<List<CurrencyEntity>> {
         return res.toString();
     }
 
+    public boolean hasErrors() {
+        return hasErrors;
+    }
+
+    public String getErrorMessage() {
+        return errorMsg;
+    }
 }

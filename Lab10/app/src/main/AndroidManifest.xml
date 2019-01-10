@@ -27,6 +27,12 @@
             android:exported="true"
             android:permission="" />
 
+        <receiver android:name=".AirplaneModeReceiver" android:enabled="true" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name="iu9.bmstu.ru.lab10.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
