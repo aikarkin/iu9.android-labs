@@ -30,50 +30,16 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_currency_usd"
-        android:textAlignment="textEnd"
-        />
-
-    <!--<Button-->
-        <!--android:id="@+id/button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:text="Button"-->
-        <!--android:visibility="invisible" />-->
-
-    <!--<EditText-->
-        <!--android:id="@+id/editText2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="58dp"-->
-        <!--android:ems="10"-->
-        <!--android:inputType="date" />-->
-
-    <TextView
         android:id="@+id/loader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Loading ..." />
+        android:text="@string/loader_txt_loading" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-         >
-
-        <!--<TextView-->
-            <!--android:id="@+id/loader"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textAlignment="center"-->
-            <!--android:text="Loading ..."/>-->
+        android:layout_weight="1" >
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/currencyRecyclerView"

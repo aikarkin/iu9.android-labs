@@ -1,6 +1,7 @@
 package android.iu9.bmstu.ru.rkapp.entity;
 
 import android.content.Context;
+import android.iu9.bmstu.ru.rkapp.Const;
 import android.iu9.bmstu.ru.rkapp.exception.BadApiRequestException;
 import android.os.Looper;
 import android.util.Log;
@@ -69,27 +70,27 @@ public class CurrencyEntity implements Serializable {
     public static List<CurrencyEntity> parse(Context ctx, String content) throws JSONException {
         List<CurrencyEntity> currencyList = new ArrayList<>();
         JSONObject json = new JSONObject(content);
-        String response = json.getString("Response");
+        String response = json.getString(Const.Json.response);
 
         if(response.equals("Success")) {
 
-            JSONArray data = json.getJSONArray("Data");
+            JSONArray data = json.getJSONArray(Const.Json.data);
             for (int i = 0; i < data.length(); i++) {
                 CurrencyEntity currency = new CurrencyEntity();
 
                 JSONObject currJson = data.getJSONObject(i);
-                currency.setOpen(currJson.getDouble("open"));
-                currency.setClose(currJson.getDouble("close"));
-                currency.setLow(currJson.getDouble("low"));
-                currency.setHigh(currJson.getDouble("high"));
-                Log.i(TAG, "Parse entity - date = " + currJson.getInt("time"));
-                currency.setDate(new Date((long) currJson.getInt("time") * 1000));
+                currency.setOpen(currJson.getDouble(Const.Json.open));
+                currency.setClose(currJson.getDouble(Const.Json.close));
+                currency.setLow(currJson.getDouble(Const.Json.low));
+                currency.setHigh(currJson.getDouble(Const.Json.high));
+                Log.i(TAG, "Parse entity - date = " + currJson.getInt(Const.Json.time));
+                currency.setDate(new Date((long) currJson.getInt(Const.Json.time) * 1000));
 
                 currencyList.add(currency);
             }
 
         } else if(response.equals("Error")) {
-            String msg = json.getString("Message");
+            String msg = json.getString(Const.Json.message);
             Log.e(TAG, "parse: " + msg);
             throw new BadApiRequestException(msg);
         }

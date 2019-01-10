@@ -4,6 +4,7 @@ import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.iu9.bmstu.ru.rkapp.Const;
 import android.iu9.bmstu.ru.rkapp.adapter.CurrencyListAdapter;
 import android.iu9.bmstu.ru.rkapp.loader.CurrencyLoader;
 import android.iu9.bmstu.ru.rkapp.R;
@@ -34,10 +35,6 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<CurrencyEntity>>, SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "MainActivity";
-    private static final String CURRENCY_KEY = "currencyData";
-    private static final String CURRENCY_HISTORY_SVC_URL = "https://min-api.cryptocompare.com/data/histoday";
-    private static final int SETTINGS_CHANGE_REQUEST = 1;
-    private static final int CURRENCY_LOADER_ADAPTER = 2;
 
     private List<CurrencyEntity> currencyData;
     private CurrencyListAdapter rvAdapter;
@@ -76,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         } else if (itemId == R.id.menu_item_settings) {
             Log.i(TAG, "Menu - Settings item selected");
             Intent settingsIntent = new Intent(MainActivity.this, PreferenceActivity.class);
-            startActivityForResult(settingsIntent, SETTINGS_CHANGE_REQUEST);
+            startActivityForResult(settingsIntent, Const.ActivityReq.settingsChangeReq);
         }
 
         return super.onOptionsItemSelected(item);
@@ -88,10 +85,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         int noOfDays;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         fsym = selectedCurrency;
-        tsym = preferences.getString("selected_currency", getResources().getString(R.string.defaultTSym));
+        tsym = preferences.getString(Const.Pref.currency, getResources().getString(R.string.defaultTSym));
         noOfDays = Integer.valueOf(
                 preferences.getString(
-                        "selected_no_of_days",
+                        Const.Pref.noOfDays,
                         String.valueOf(getResources().getInteger(R.integer.default_no_of_days))
                 )
         );
@@ -126,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if(currencyData instanceof ArrayList)
-            outState.putSerializable(CURRENCY_KEY, (ArrayList<CurrencyEntity>)currencyData);
+            outState.putSerializable(Const.Key.currencyData, (ArrayList<CurrencyEntity>)currencyData);
 
         super.onSaveInstanceState(outState);
     }
@@ -138,21 +135,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private void startLoader() {
         LoaderManager loaderManager = getLoaderManager();
-        Loader<List> newsLoader = loaderManager.getLoader(CURRENCY_LOADER_ADAPTER);
+        Loader<List> newsLoader = loaderManager.getLoader(Const.Loader.currencyLoaderId);
 
         if(newsLoader == null) {
             Log.i(TAG, "init NewsLoader");
-            loaderManager.initLoader(CURRENCY_LOADER_ADAPTER, null, this);
+            loaderManager.initLoader(Const.Loader.currencyLoaderId, null, this);
         } else {
             Log.i(TAG, "restart NewsLoader");
-            loaderManager.restartLoader(CURRENCY_LOADER_ADAPTER, null, this);
+            loaderManager.restartLoader(Const.Loader.currencyLoaderId, null, this);
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void loadCurrencyList() {
         EditText etCurrency = findViewById(R.id.editTextCurrency);
-        selectedCurrency = etCurrency.getText().toString().toLowerCase();
+        selectedCurrency = etCurrency.getText().toString().toUpperCase();
         Set<String> currencySet = new HashSet<>(Arrays.asList(getResources().getStringArray(R.array.currency_names)));
         Log.i(TAG, "onCreate: available currencies: " + String.join(", ", currencySet));
         Log.i(TAG, "onCreate: selected currency: " + selectedCurrency);
@@ -182,17 +179,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (fsym == null || tsym == null || limit == 0)
             return null;
 
-        Uri currencyHistoryUri = Uri.parse(CURRENCY_HISTORY_SVC_URL)
+        Uri currencyHistoryUri = Uri.parse(Const.Svc.history)
                 .buildUpon()
-//                .appendQueryParameter("aggregate", "daily")
-                .appendQueryParameter("apiKey", apiKey)
-                .appendQueryParameter("fsym", fsym)
-                .appendQueryParameter("tsym", tsym)
-                .appendQueryParameter("limit", String.valueOf(limit))
+                .appendQueryParameter(Const.Key.apiKey, apiKey)
+                .appendQueryParameter(Const.Key.fsym, fsym)
+                .appendQueryParameter(Const.Key.tsym, tsym)
+                .appendQueryParameter(Const.Key.limit, String.valueOf(limit))
                 .build();
 
         return currencyHistoryUri.toString();
     }
-
 
 }

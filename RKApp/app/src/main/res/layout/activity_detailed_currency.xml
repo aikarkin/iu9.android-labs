@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="Name"
+            android:text="@string/tv_currency_name"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="Value"
+            android:text="@string/tv_open_value"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -46,7 +46,7 @@
             android:layout_marginTop="40dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="USD:"
+            android:text="@string/tv_txt_usd"
             android:textColor="@android:color/background_dark"
             android:textStyle="italic" />
 
@@ -57,7 +57,7 @@
             android:layout_marginTop="40dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="30$"
+            android:text=""
             android:textColor="@android:color/background_dark" />
 
     </TableRow>
@@ -74,7 +74,7 @@
             android:layout_marginTop="40dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="EUR:"
+            android:text="@string/tv_txt_eur"
             android:textColor="@android:color/background_dark"
             android:textStyle="italic" />
 
@@ -85,7 +85,7 @@
             android:layout_marginTop="40dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="40 eur"
+            android:text=""
             android:textColor="@android:color/background_dark" />
 
     </TableRow>
@@ -102,7 +102,7 @@
             android:layout_marginTop="40dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="RUB:"
+            android:text="@string/tv_txt_rub"
             android:textColor="@android:color/background_dark"
             android:textStyle="italic" />
 
@@ -113,7 +113,7 @@
             android:layout_marginTop="40dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="15 rub"
+            android:text=""
             android:textColor="@android:color/background_dark" />
 
     </TableRow>

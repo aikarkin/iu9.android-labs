@@ -1,5 +1,6 @@
 package android.iu9.bmstu.ru.rkapp.task;
 
+import android.iu9.bmstu.ru.rkapp.Const;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -15,8 +16,8 @@ import java.util.Scanner;
 public class FetchDetailedCurrencyTask extends AsyncTask<Uri, Void, Double[]> {
     @Override
     protected Double[] doInBackground(Uri... uris) {
-        String tsymsParam = uris[0].getQueryParameter("tsyms");
-        String fsym = uris[0].getQueryParameter("fsym");
+        String tsymsParam = uris[0].getQueryParameter(Const.Key.tsyms);
+        String fsym = uris[0].getQueryParameter(Const.Key.fsym);
 
         if(tsymsParam != null) {
             String[] tsyms = tsymsParam.split(",");

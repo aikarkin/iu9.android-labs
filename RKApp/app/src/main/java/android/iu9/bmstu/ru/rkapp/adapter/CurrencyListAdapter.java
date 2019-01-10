@@ -21,6 +21,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapter.ViewHolder> {
+    private static final String DATE_FORMAT_PATTERN = "dd.MM.yyyy";
+
     private AppCompatActivity activity;
     private List<CurrencyEntity> currencyList;
     private String fsym;
@@ -49,7 +51,7 @@ public class CurrencyListAdapter extends RecyclerView.Adapter<CurrencyListAdapte
         if(currencyList != null) {
             CurrencyEntity currency = currencyList.get(position);
 
-            DateFormat fmt = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+            DateFormat fmt = new SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.getDefault());
             fmt.setTimeZone(TimeZone.getTimeZone("GMT"));
 
             holder.dateView.setText(fmt.format(currency.getDate()));

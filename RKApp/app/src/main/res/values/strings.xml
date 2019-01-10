@@ -11,6 +11,7 @@
     <string name="apiKey">aa28375976e9cf6637268bd0be9b1b9a5788534c6f2e6a64bcb800d384968aa1</string>
     <string name="defaultFSym">USD</string>
     <string name="defaultTSym">RUB</string>
+
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
@@ -87,4 +88,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_btn_display">Display</string>
     <string name="txt_currency_usd">Currency: USD</string>
+    <string name="tv_currency_name">Name</string>
+    <string name="tv_open_value">Value</string>
+    <string name="tv_txt_usd">USD:</string>
+    <string name="tv_txt_eur">EUR:</string>
+    <string name="tv_txt_rub">RUB:</string>
+    <string name="loader_txt_loading">Loading ...</string>
 </resources>
