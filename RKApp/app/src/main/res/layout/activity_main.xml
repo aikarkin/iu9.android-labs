@@ -27,6 +27,7 @@
             android:layout_margin="8dp"
             android:layout_marginEnd="15dp"
             android:text="@string/txt_btn_display" />
+
     </LinearLayout>
 
     <TextView
@@ -48,5 +49,11 @@
 
         </android.support.v7.widget.RecyclerView>
     </ScrollView>
+
+    <Button
+        android:id="@+id/openWebSite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="min-api.cryptocompare.com" />
 
 </LinearLayout>

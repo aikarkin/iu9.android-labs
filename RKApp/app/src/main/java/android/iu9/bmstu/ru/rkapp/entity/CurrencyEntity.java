@@ -73,7 +73,6 @@ public class CurrencyEntity implements Serializable {
         String response = json.getString(Const.Json.response);
 
         if(response.equals("Success")) {
-
             JSONArray data = json.getJSONArray(Const.Json.data);
             for (int i = 0; i < data.length(); i++) {
                 CurrencyEntity currency = new CurrencyEntity();
@@ -88,7 +87,6 @@ public class CurrencyEntity implements Serializable {
 
                 currencyList.add(currency);
             }
-
         } else if(response.equals("Error")) {
             String msg = json.getString(Const.Json.message);
             Log.e(TAG, "parse: " + msg);
@@ -96,4 +94,5 @@ public class CurrencyEntity implements Serializable {
         }
         return currencyList;
     }
+
 }

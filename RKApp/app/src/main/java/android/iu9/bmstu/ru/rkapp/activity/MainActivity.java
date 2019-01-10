@@ -54,6 +54,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Button btnDisplay = findViewById(R.id.displayCurrency);
         btnDisplay.setOnClickListener(btn -> loadCurrencyList());
         loadCurrencyList();
+
+        Button btnOpenSite = findViewById(R.id.openWebSite);
+        btnOpenSite.setOnClickListener(btn -> {
+            Intent openSiteIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.apiSite)));
+            if(openSiteIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(openSiteIntent);
+            } else {
+                Log.e(TAG, "Failed to open site. No app provided");
+                Toast.makeText(this, "Failed to open site. No app provided", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

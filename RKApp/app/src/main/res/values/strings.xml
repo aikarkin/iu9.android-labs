@@ -9,6 +9,7 @@
     <string name="title_activity_preference">Preference</string>
 
     <string name="apiKey">aa28375976e9cf6637268bd0be9b1b9a5788534c6f2e6a64bcb800d384968aa1</string>
+    <string name="apiSite">http://min-api.cryptocompare.com/</string>
     <string name="defaultFSym">USD</string>
     <string name="defaultTSym">RUB</string>
 
